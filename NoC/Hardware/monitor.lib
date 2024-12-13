@@ -1,0 +1,135 @@
+; ===============================================
+; MONITOR LIBRARY
+; BY CAIO VINICIUS
+; ===============================================
+
+%IFNDEF __MONITOR_LIB__
+%DEFINE __MONITOR_LIB__
+
+; MAIN STRINGS
+SystemName db "SimpleOS Total Assembly V 0.1"
+
+; MONITOR  &  WINDOW CONFIGURATIONS
+BackWidth            dw 0000h
+BackHeigth           dw 0000h
+BackColor            db 46
+Pagination           db 0
+CursorX              db 15
+CursorY              db 12
+State                db 0
+count                dw 0000h
+windowBar            dw 3000h
+WindowWidth          dw 3001h
+WindowHeigth         dw 3003h
+WindowPositionX      dw 3005h
+WindowPositionY      dw 3007h
+WindowBarColor       dw 300Ah
+WindowBackColor      dw 300Ah
+buttonClose          dw 3000h
+buttonMaximize       dw 3000h
+buttonMinimize       dw 3000h
+StateWindowBar       dw 0000h
+
+; ROTINE LIBRARY
+VGA.SetVideoMode:
+    mov ah, 00h
+    mov al, 13h 
+    int 10h
+    mov ax, 320
+    mov WORD[BackWidth], ax 
+    mov ax, 200
+    mov WORD[BackHeigth]
+    call DrawPixelConfig
+ret 
+DrawPixelConfig:
+    mov ah, 0Ch
+    mov al, [BackColor]
+    mov cx, 0                 ; coluna 0
+    mov dx, 0                 ; linha  0
+ret 
+DrawBackground:
+    int 10h
+    inc cx 
+    cmp cx, WORD[BackWidth]
+    jmp DrawBackground
+    mov cx, 0
+    inc dx
+    cmp dx, WORD[BackHeigth]
+    jmp DrawBackground
+    mov dx, 0
+ret
+PrintString:
+    mov ah, 09h
+    mov bh, [Pagination]
+    mov cx, 1
+    mov al, [si]
+    print:
+        int 10h
+        inc si 
+        call MoveCursor
+        mov ah, 09h
+        mov al, [si]
+        cmp al, 0
+        jne print 
+ret
+MoveCursor:
+    mov ah, 02h 
+    mov bh, [Pagination]
+    inc dl 
+    int 10h
+ret
+EffectInit:
+    mov bl, 44
+    start:
+        mov dh, [CursorY]
+        mov dl, [CursorX]
+        call MoveCursor
+        mov si, SystemName
+        call PrintString
+        pusha                ; empilha todos os registradores
+        mov bl, [State]
+        cmp bl, 0
+        je Increment
+        Increment:
+            popa             ; oposto do 'pusha'
+            inc bl
+            call Wainting    ; funcao de espera para visualizar o efeito
+            cmp bl, 50
+            jne start
+            pusha 
+            mov bl, 1
+            mov BYTE[State], bl
+            popa
+            jmp start
+        Decrement:
+            popa
+            dec bl
+            call Wainting
+            cmp bl, 44
+            jne start 
+            pusha
+            mov bl, 0
+            mov BYTE[State], bl 
+            mov bx, [count]
+            inc bx 
+            mov WORD[count], bx
+            cmp bx, 5000
+            jne ReturnLoop
+            jmp ReturnProg
+            ReturnLoop:
+                popa 
+                jmp start
+            ReturnProg:
+                popa 
+                ret 
+ret 
+Wainting:
+    pusha 
+    mov bx, 0
+    time: 
+        inc bx, 0
+        cmp bx, 50000
+        jne time 
+    popa 
+ret 
+%ENDIF
