@@ -3,37 +3,37 @@
 ; BY CAIO VINICIUS
 ; =================================
 [BITS 16]          ; Diretriz 16 BITS
-[ORG 0x0800]       ; Endereco 0000h:0800h definido no bootloader
+[ORG 0000h]        ; Endereco 0000h:0800h definido no bootloader
 
-; I N C L U S I O N S  A N D  D I R E C T I V E S 
+jmp OSMain
+
+; D I R E T I V A S   E   I N C L U S O E S 
 %INCLUDE "Hardware/monitor.lib"           ; Inclusao da biblioteca monitor.lib
 
-; C H A M A D A S  
-call Main             ; Chamando a rotina main 
-; I N I T I A L I Z I N G  S Y S T E M
-Main:                      ; definindo a rotina main
-    ; Chamando as demais rotinas
-    call ConfigSegments
-    call ConfigStacks
+OSMain:
+    call ConfigSegment
+    call ConfigStack
     call VGA.SetVideoMode
     call DrawBackground
     call EffectInit
-    jmp END                 ; pulando para o final do codigo apos realizar todas as rotinas 
+    jmp END
 
-; K E R N E L  F U N C T I O N S
-ConfigSegments:
-    mov ax, es
+; K E R N E L   F U N C T I O N S
+ConfigSegment:
+    mov ax, es    ; guardando o segmento extra em ax
     mov ds, ax
 ret
-ConfigStacks:
+ConfigStack:
     mov ax, 7D00h
     mov ss, ax
     mov sp, 03FEh
 ret
-END:
+END: 
     mov ah, 00h 
     int 16h
-    mov ax, 0040h
-    mov ds, ax 
-    mov ax, 1234h
-    mov [0072h], ax
+    int 19h
+    ; mov ax, 0040h
+    ; mov ds, ax
+    ; mov ax 1234h
+    ; mov [0072h], ax
+    ; jmp 0FFFFh:0000h
