@@ -68,7 +68,7 @@ MoveCursor:
     int 10h
 ret
 EffectInit:
-    mov bl, 44
+    mov bl, 44      ; 0
     start:
         mov dh, [CursorY]
         mov dl, [CursorX]
@@ -84,7 +84,7 @@ EffectInit:
         popa
         inc bl
         call Wainting
-        cmp bl, 50
+        cmp bl, 50            ; 255
         jne start
         pusha
         mov bl, 1
@@ -95,7 +95,7 @@ EffectInit:
         popa 
         dec bl
         call Wainting
-        cmp bl, 44
+        cmp bl, 44 
         jne start
         pusha
         mov bl, 0
@@ -103,7 +103,7 @@ EffectInit:
         mov bx, [count]
         inc bx
         mov WORD[count], bx
-        cmp bx, 5000
+        cmp bx, 10
         jne ReturnLoop
         jmp ReturnProg
     ReturnLoop:
@@ -115,11 +115,10 @@ EffectInit:
 ret
 Wainting:
     pusha
-    mov bx, 0
-    time:
-        inc bx
-        cmp bx, 50000
-        jne time
+    mov ah, 86h
+    mov cx, 0002h
+    mov dx, 49F0h
+    int 15h
     popa
 ret
 %ENDIF

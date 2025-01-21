@@ -1,0 +1,32 @@
+; ===============================================
+; WMEMORY LIBRARY
+; BY CAIO VINICIUS
+; ===============================================
+%IFNDEF __WMEMORY_LIB__
+%DEFINE __WMEMORY_LIB__
+
+; MEMORY WINDOW CONFIGURATIONS
+%DEFINE WindowAddress   0800h:0500h
+%DEFINE Window_Bar            3000h
+%DEFINE Window_Width          3001h
+%DEFINE Window_Height         3003h
+%DEFINE Window_PositionX      3005h
+%DEFINE Window_PositionY      3007h
+%DEFINE Window_BarColor       3009h
+%DEFINE Window_BorderColor    300Ah
+%DEFINE Window_Back_Color     300Bh
+%DEFINE Button_Close          300Ch
+%DEFINE Button_Moximize       300Dh
+%DEFINE Button_Minimize       300Eh
+
+M_InitialPosition_Y        dw 0000h
+M_InitialPosition_X        dw 0000h
+State_WindowBar            dw 0000h
+SavePositionX              dw 0000h
+SavePositionY              dw 0000h
+SaveWidth                  dw 0000h
+SaveHeigth                 dw 0000h
+
+
+
+%ENDIF
