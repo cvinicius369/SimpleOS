@@ -10,7 +10,7 @@ jmp 0800h:0000h
 
 LoadSystem:
     mov ah, 02h       ; ler discos
-    mov al, 1         ; quantidade de setores a ser lido
+    mov al, 1         ; quantidade de setores a ser lido para o kernel
     mov ch, 0         ; trilha a ser lida
     mov cl, 2         ; setor a ser lido
     mov dh, 0         ; cabecote a ser lido

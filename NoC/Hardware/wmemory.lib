@@ -16,8 +16,13 @@
 %DEFINE Window_BorderColor    300Ah
 %DEFINE Window_Back_Color     300Bh
 %DEFINE Button_Close          300Ch
-%DEFINE Button_Moximize       300Dh
+%DEFINE Button_Maximize       300Dh
 %DEFINE Button_Minimize       300Eh
+%DEFINE Window_Border         300Fh
+%DEFINE Window_Border_Rigth   3010h 
+%DEFINE Window_Border_Left    3011h
+%DEFINE Window_Border_Up      3012h
+%DEFINE Window_Border_Down    3013h
 
 Back_InitialPosition_Y        dw 0000h
 Back_InitialPosition_X        dw 0000h

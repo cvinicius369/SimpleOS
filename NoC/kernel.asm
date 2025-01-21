@@ -27,24 +27,32 @@ GrafficInterface:
     mov word[Window_PositionX], 5
     mov word[Window_PositionY], 5
     mov word[Window_Width], 100
-    mov word[Window_Height], 150
+    mov word[Window_Height], 100
     mov byte[Window_BorderColor], 21 ; uma cor clara
     mov byte[Window_BarColor], 16
     mov byte[Window_Back_Color], 55 ; azul escuro
-    mov byte[Sector], 3
+    mov byte[Button_Close], 1
+    mov byte[Button_Maximize], 1
+    mov byte[Button_Minimize], 1
+    mov byte[Sector], 4
     mov byte[Drive], 80h
-    mov byte[NumSectors], 1
+    mov byte[NumSectors], 2
     mov word[SegmentAddr], 0800h
     mov word[OffsetAddr], 0500h
     call Read_Disk
     call WindowAddress
     mov byte[Window_Bar], 0
-    mov word[Window_PositionX], 110
-    mov word[Window_PositionY], 5
-    mov word[Window_Width], 50
-    mov word[Window_Height], 50
-    mov byte[Window_Back_Color], 60
-    mov byte[Window_BorderColor], 30
+    mov word[Window_PositionX], 20
+    mov word[Window_PositionY], 20
+    mov word[Window_Width], 65
+    mov word[Window_Height], 65
+    mov byte[Window_Back_Color], 21
+    mov byte[Window_BorderColor], 55
+    mov byte[Window_Border], 1
+    mov byte[Window_Border_Rigth], 29
+    mov byte[Window_Border_Down], 29
+    mov byte[Window_Border_Left], 0
+    mov byte[Window_Border_Up], 0
     call WindowAddress
 ret
 ConfigSegment:
