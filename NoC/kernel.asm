@@ -23,18 +23,28 @@ OSMain:
 
 ; K E R N E L   F U N C T I O N S
 GrafficInterface:
-    mov byte[Window_Bar], 0
+    mov byte[Window_Bar], 1
     mov word[Window_PositionX], 5
     mov word[Window_PositionY], 5
     mov word[Window_Width], 100
     mov word[Window_Height], 150
-    mov byte[Window_BorderColor], 55
+    mov byte[Window_BorderColor], 21 ; uma cor clara
+    mov byte[Window_BarColor], 16
+    mov byte[Window_Back_Color], 55 ; azul escuro
     mov byte[Sector], 3
     mov byte[Drive], 80h
     mov byte[NumSectors], 1
     mov word[SegmentAddr], 0800h
     mov word[OffsetAddr], 0500h
     call Read_Disk
+    call WindowAddress
+    mov byte[Window_Bar], 0
+    mov word[Window_PositionX], 110
+    mov word[Window_PositionY], 5
+    mov word[Window_Width], 50
+    mov word[Window_Height], 50
+    mov byte[Window_Back_Color], 60
+    mov byte[Window_BorderColor], 30
     call WindowAddress
 ret
 ConfigSegment:

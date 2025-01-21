@@ -19,8 +19,8 @@
 %DEFINE Button_Moximize       300Dh
 %DEFINE Button_Minimize       300Eh
 
-M_InitialPosition_Y        dw 0000h
-M_InitialPosition_X        dw 0000h
+Back_InitialPosition_Y        dw 0000h
+Back_InitialPosition_X        dw 0000h
 State_WindowBar            dw 0000h
 SavePositionX              dw 0000h
 SavePositionY              dw 0000h
