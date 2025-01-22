@@ -24,8 +24,8 @@
 %DEFINE Window_Border_Up      3012h
 %DEFINE Window_Border_Down    3013h
 
-Back_InitialPosition_Y        dw 0000h
-Back_InitialPosition_X        dw 0000h
+Back_InitialPosition_Y     dw 0000h
+Back_InitialPosition_X     dw 0000h
 State_WindowBar            dw 0000h
 SavePositionX              dw 0000h
 SavePositionY              dw 0000h
