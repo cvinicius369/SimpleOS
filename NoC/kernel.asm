@@ -23,24 +23,27 @@ OSMain:
 
 ; K E R N E L   F U N C T I O N S
 GrafficInterface:
-    mov byte[Window_Bar], 1
-    mov word[Window_PositionX], 5
-    mov word[Window_PositionY], 5
-    mov word[Window_Width], 100
-    mov word[Window_Height], 100
-    mov byte[Window_BorderColor], 21 ; uma cor clara
-    mov byte[Window_BarColor], 16
-    mov byte[Window_Back_Color], 55 ; azul escuro
-    mov byte[Button_Close], 1
-    mov byte[Button_Maximize], 1
-    mov byte[Button_Minimize], 1
-    mov byte[Sector], 4
-    mov byte[Drive], 80h
-    mov byte[NumSectors], 2
-    mov word[SegmentAddr], 0800h
-    mov word[OffsetAddr], 0500h
+    mov byte[Window_Bar],          1    ; janela com barra ativada
+    mov word[Window_PositionX],    5    ; posicao X
+    mov word[Window_PositionY],    5    ; posicao y
+    mov word[Window_Width],        100  ; pixels de largura
+    mov word[Window_Height],       100  ; pixels de altura
+    mov byte[Window_BorderColor],  21   ; uma cor clara
+    mov byte[Window_BarColor],     16   ; cor da barra
+    mov byte[Window_Back_Color],   55   ; azul escuro
+    mov byte[Button_Close],        1    ; botao Close ativado
+    mov byte[Button_Maximize],     1    ; botao Maximize ativado
+    mov byte[Button_Minimize],     1    ; botao Minimize ativado
+
+    ; configuracao de leitura de disco
+    mov byte[Sector],              4    ; Numero do setor
+    mov byte[Drive],               80h
+    mov byte[NumSectors],          2
+    mov word[SegmentAddr],         0800h
+    mov word[OffsetAddr],          0500h
     call Read_Disk
     call WindowAddress
+
     mov byte[Window_Bar], 0
     mov word[Window_PositionX], 20
     mov word[Window_PositionY], 20
