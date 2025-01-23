@@ -24,21 +24,10 @@ OSMain:
 
 ; K E R N E L   F U N C T I O N S
 GrafficInterface:
-    mov byte[Window_Bar], 1    ; janela com barra ativada
-    mov word[Window_PositionX], 5    ; posicao X
-    mov word[Window_PositionY], 5    ; posicao y
-    mov word[Window_Width], 100  ; pixels de largura
-    mov word[Window_Height], 100  ; pixels de altura
-    mov byte[Window_BorderColor], 21   ; uma cor clara
-    mov byte[Window_BarColor], 16   ; cor da barra
-    mov byte[Window_Back_Color], 55   ; azul escuro
-    mov byte[Button_Close], 1    ; botao Close ativado
-    mov byte[Button_Maximize], 1    ; botao Maximize ativado
-    mov byte[Button_Minimize], 1    ; botao Minimize ativado
-
     ; configuracao de leitura de disco
     __LoadInterface
-    call WindowAddress
+    __CreateWindow 1,1,1,1,16,21,55,5,5,100,100
+    __ShowWindow 1
 
     mov byte[Window_Bar], 0
     mov word[Window_PositionX], 20

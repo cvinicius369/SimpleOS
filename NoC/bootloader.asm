@@ -10,9 +10,9 @@ jmp 0800h:0000h
 
 LoadSystem:
     mov ah, 02h       ; ler discos
-    mov al, 1         ; quantidade de setores a ser lido para o kernel
+    mov al, 2         ; quantidade de setores a ser lido para o kernel
     mov ch, 0         ; trilha a ser lida
-    mov cl, 2         ; setor a ser lido
+    mov cl, 2         ; setor inicial do kernel a ser lido
     mov dh, 0         ; cabecote a ser lido
     mov dl, 80h       ; disco na primeira ordem de boot
     mov bx, 0800h     ; endereco 0800h eh armazenado em bx

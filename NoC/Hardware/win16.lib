@@ -7,7 +7,7 @@
 
 %DEFINE WIN_SEGMENT 0x800
 %DEFINE WIN_OFFSET 0x500
-%DEFINE WIN_SECTOR 3
+%DEFINE WIN_SECTOR 4
 
 ; Carregano window.bin na memoria
 ; ==================================================
