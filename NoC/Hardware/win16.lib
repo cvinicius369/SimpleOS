@@ -1,0 +1,43 @@
+; ==================================================
+; Macros LIBRARY
+; BY CAIO VINICIUS
+; ==================================================
+%IFNDEF _WIN16_LIB
+%DEFINE _WIN16_LIB
+
+%DEFINE WIN_SEGMENT 0x800
+%DEFINE WIN_OFFSET 0x500
+%DEFINE WIN_SECTOR 3
+
+; Carregano window.bin na memoria
+; ==================================================
+%MACRO __LoadInterface 0
+    mov byte[Sector], WIN_SECTOR
+    mov byte[Drive], 80h
+    mov byte[NumSectors], 2
+    mov word[SegmentAddr], WIN_SEGMENT
+    mov word[OffsetAddr], WIN_OFFSET
+    call Read_Disk
+%ENDMACRO
+
+; Construcao de janelas
+; ==================================================
+%MACRO __CreateWindow 11
+    mov byte[Window_Bar],         %1
+    mov byte[Button_Close],       %2
+    mov byte[Button_Maximize],    %3
+    mov byte[Button_Minimize],    %4
+    mov byte[Window_Back_Color],  %5
+    mov byte[Window_BorderColor], %6
+    mov byte[Window_Back_Color],  %7
+    mov word[Window_PositionX],   %8
+    mov word[Window_PositionY],   %9
+    mov word[Window_Width],       %10
+    mov word[Window_Height],      %11
+%ENDMACRO
+%MACRO __ShowWindow 1
+    mov byte[Window_Exist], %1
+    call WindowAddress
+    mov byte[Window_Border], 0
+%ENDMACRO
+%ENDIF

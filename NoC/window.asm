@@ -60,6 +60,7 @@ Window_WithBar:
         call Border_RightDown
         mov bx, word[Window_PositionY]
         add bx, 8
+        call Border_Left
         Line_LeftBar:
             int 10h
             dec dx
@@ -257,4 +258,4 @@ Border_Left:
 ret
 
 Return:
-    ret
+ret

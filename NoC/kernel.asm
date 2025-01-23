@@ -11,6 +11,7 @@ jmp OSMain
 %INCLUDE "Hardware/wmemory.lib"
 %INCLUDE "Hardware/monitor.lib"           ; Inclusao da biblioteca monitor.lib
 %INCLUDE "Hardware/disk.lib"
+%INCLUDE "Hardware/win16.lib"
 
 OSMain:
     call ConfigSegment
@@ -36,12 +37,7 @@ GrafficInterface:
     mov byte[Button_Minimize], 1    ; botao Minimize ativado
 
     ; configuracao de leitura de disco
-    mov byte[Sector], 3    ; Numero do setor
-    mov byte[Drive], 80h
-    mov byte[NumSectors], 2
-    mov word[SegmentAddr], 0800h
-    mov word[OffsetAddr], 0500h
-    call Read_Disk
+    __LoadInterface
     call WindowAddress
 
     mov byte[Window_Bar], 0
