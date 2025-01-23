@@ -62,6 +62,7 @@ JmpValue%1:
 %MACRO __ShowField 1
     mov byte[Field_Exist], %1
     call WindowAddress
+    mov byte[Window_Border], 0
 %ENDMACRO
 
 ; Construcao de Botoes
