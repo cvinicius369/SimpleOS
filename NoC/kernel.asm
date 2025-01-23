@@ -28,20 +28,8 @@ GrafficInterface:
     __LoadInterface
     __CreateWindow 1,1,1,1,16,21,55,5,5,100,100
     __ShowWindow 1
-
-    mov byte[Window_Bar], 0
-    mov word[Window_PositionX], 20
-    mov word[Window_PositionY], 20
-    mov word[Window_Width], 65
-    mov word[Window_Height], 65
-    mov byte[Window_Back_Color], 21
-    mov byte[Window_BorderColor], 55
-    mov byte[Window_Border], 1
-    mov byte[Window_Border_Rigth], 29
-    mov byte[Window_Border_Down], 29
-    mov byte[Window_Border_Left], 0
-    mov byte[Window_Border_Up], 0
-    call WindowAddress
+    __CreateField Text1,0,55,30,55,60,100,8
+    ; __ShowField 1     -> está ocorrendo algum erro nesta macro
 ret
 ConfigSegment:
     mov ax, es    ; guardando o segmento extra em ax
