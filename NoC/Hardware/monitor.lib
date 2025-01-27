@@ -12,7 +12,7 @@ SystemName db "SimpleOS ASM 1", 0
 ; MONITOR  &  WINDOW CONFIGURATIONS
 BackWidth            dw 0000h
 BackHeigth           dw 0000h
-BackColor            db 46
+BackColor            db 1
 Pagination           db 0
 CursorX              db 15
 CursorY              db 12

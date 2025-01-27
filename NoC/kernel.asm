@@ -29,7 +29,7 @@ GrafficInterface:
     __CreateWindow 1,1,1,1,16,21,55,5,5,100,100
     __ShowWindow 1
     __CreateField Text1,0,55,30,55,60,100,8
-    ; __ShowField 1     -> está ocorrendo algum erro nesta macro
+    __ShowField 1     ;-> está ocorrendo algum erro nesta macro
 ret
 ConfigSegment:
     mov ax, es    ; guardando o segmento extra em ax
