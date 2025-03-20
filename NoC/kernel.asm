@@ -26,10 +26,16 @@ OSMain:
 GrafficInterface:
     ; configuracao de leitura de disco
     __LoadInterface
-    __CreateWindow 1,1,1,1,16,21,55,5,5,100,100
+    __CreateWindow 1,1,1,1,16,28,53,5,10,200,150
     __ShowWindow 1
     __CreateField Text1,0,55,30,55,60,100,8
-    __ShowField 1     ;-> está ocorrendo algum erro nesta macro
+    __ShowField 1
+    __CreateField Text2,0,55,30,55,72,100,8
+    __ShowField 1
+    __CreateField Text3,0,55,30,55,84,100,8
+    __ShowField 1
+    __CreateButton Button1, "Entrar", 55, 55, 90, 98, 25, 8
+    __ShowButton 1
 ret
 ConfigSegment:
     mov ax, es    ; guardando o segmento extra em ax
